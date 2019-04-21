@@ -10,7 +10,8 @@
 // 加密所用KEY 保证JWT安全性 每个项目都应该不一样 并且不要泄露
 $key = 'keykeykeykeykey465414213145353453';
 
-// 需要存入JWT中的数据 为一个数组 如果必须要存储一些敏感数据使用password_hash[PASSWORD_BCRYPT]加密并使用password_verify验证
+// 需要存入JWT中的数据 为一个数组
+// 如果必须要存储一些敏感数据使用password_hash[PASSWORD_BCRYPT]加密并使用password_verify验证
 $data = [
   'id' => 1,
   'data' => [
