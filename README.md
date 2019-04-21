@@ -81,6 +81,7 @@ $config = [
 ### Helper
 
 * 使用Helper方法 需要提前配置好 KEY 和 默认PAYLOAD即上面的$config
+* 配置在源文件 init中
 
 `$jwt = jwt_start($data);`
 
