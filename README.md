@@ -32,7 +32,20 @@ $data = [
 * 默认配置 JWT启用时间 过期时间等
 ```
 $config = [
-
+  // 发行人
+  'iss' => 'auth',
+  // 主题
+  'sub' => 'auth',
+  // 用户
+  'aud' => 'user',
+  // 到期时间
+  'exp' => time() + 600,
+  // 启用时间
+  'nbf' => time(),
+  // 发布时间
+  'iat' => time(),
+  // JWT ID
+  'jti' => uniqid()
 ];
 ```
 
