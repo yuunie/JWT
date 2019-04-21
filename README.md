@@ -52,12 +52,14 @@ $config = [
 ---
 
 * 生成JWT
+
 `$jwt = JWT::start($data, $key, $config);`
 
 ---
 
 * 验证JWT
   * 返回200说明正常
+  
 `JWT::check($jwt, $key);`
 
 ---
@@ -65,11 +67,13 @@ $config = [
 * 获取某个变量所对应的值 生成JWT时 $data 中的数据
   * 是否需要验证 为一个bool值 默认为true 如果之前手动验证了 可以使用false
   * 是否需要验证为 false 时 $key 不用传
+  
 `JWT::get($jwt, 'id', [是否需要验证(true/false)], $key);`
 
 ---
 
 * 通 get 返回整个 $data 
+
 `JWT::data($jwt, [是否需要验证(true/false)], $key);`
 
 ---
@@ -77,6 +81,8 @@ $config = [
 ### Helper
 
 * 使用Helper方法 需要提前配置好 KEY 和 默认PAYLOAD即上面的$config
+
 `$jwt = jwt_start($data);`
+
 `$data = jwt_data($jwt);`
 
