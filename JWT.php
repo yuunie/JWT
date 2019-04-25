@@ -13,6 +13,11 @@ class JWT
 
     protected static $key;
 
+    protected static function base64_encode_good($data)
+    {
+        return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+    }
+
     // 初始化JWT
     protected static function init()
     {
@@ -37,7 +42,7 @@ class JWT
     // 获得JWT
     /**
      * 获得JWT
-     * 
+     *
      * @name start
      * @static
      * @param array $data 需要保存的数据(可选,不填为空)
@@ -57,9 +62,9 @@ class JWT
         // 获得数据
         $payload = self::payload($data, $config);
         // 获得签名
-        $signature = self::signature(base64_encode($header), base64_encode($payload), self::$key);
+        $signature = self::signature(self::base64_encode_good($header), self::base64_encode_good($payload), self::$key);
         // 生成JWT
-        $jwt = base64_encode($header) . '.' . base64_encode($payload) . '.' . base64_encode($signature);
+        $jwt = self::base64_encode_good($header) . '.' . self::base64_encode_good($payload) . '.' . self::base64_encode_good($signature);
         // 返回JWT
         return $jwt;
     }
@@ -89,7 +94,7 @@ class JWT
         // 检测签名
         $theSignature = $jwtArray[2];
         $checkSignature = self::signature($jwtArray[0], $jwtArray[1], self::$key);
-        $checkSignature = base64_encode($checkSignature);
+        $checkSignature = self::base64_encode_good($checkSignature);
         if ($theSignature != $checkSignature) {
             return 102; // JWT 签名不正确
         }
@@ -129,7 +134,7 @@ class JWT
     // 获得数据
     /**
      * 获得数据
-     * 
+     *
      * @name get
      * @param string $jwt JWT
      * @param string $name 所需获得的变量名
@@ -152,7 +157,7 @@ class JWT
             }
             if (self::check($jwt, $key) != 200) {
                 return false;
-            } 
+            }
         }
         $jwtArray = explode('.', $jwt);
         $payloadBase = $jwtArray[1];
@@ -165,7 +170,7 @@ class JWT
     // 为已经存在的JWT 添加或更改数据
     /**
      * 为JWT添加修改数据
-     * 
+     *
      * @name set
      * @param string $jwt JWT
      * @param array $data 需要添加或修改的值(数组键值对)
@@ -197,7 +202,7 @@ class JWT
             }
             if (self::check($jwt, $key) != 200) {
                 return false;
-            } 
+            }
         }
         $jwtArray = explode('.', $jwt);
         $payloadBase = $jwtArray[1];
@@ -209,14 +214,13 @@ class JWT
 
     /**
      * 设置JWT 默认 加密秘钥
-     * 
+     *
      * @name setKey
      * @param string $key 加密秘钥(尽量复杂,用于包含JWT,请勿泄露)
      * @return bool
      */
     public static function setKey($key = '')
     {
-        self::init();
         if ($key != '') {
             self::$key = $key;
             return true;
@@ -283,57 +287,61 @@ class JWT
 
 }
 
-
 // 使用以下函数时 需要先配置好 key 等
 if (!function_exists('jwt_start')) {
     /**
      * 创建一个JWT并添加用户数据
-     * 
+     *
      * @param array $data 存入JWT中的数据(可选)
      */
-    function jwt_start($data = []) {
+    function jwt_start($data = [])
+    {
         return JWT::start($data);
     }
 }
 if (!function_exists('jwt_set')) {
     /**
      * 修改或添加JWT中的用户数据
-     * 
+     *
      * @param string $jwt JWT
      * @param array $data 需要更改或替换的数据(数组键值对)
      */
-    function jwt_set($jwt = '', $data = []) {
+    function jwt_set($jwt = '', $data = [])
+    {
         return JWT::set($jwt, $data);
     }
 }
 if (!function_exists('jwt_get')) {
     /**
      * 获取JWT中指定的用户设置的数据
-     * 
+     *
      * @param string $jwt JWT
      * @param string $name 字段名
      */
-    function jwt_get($jwt = '', $name = '') {
+    function jwt_get($jwt = '', $name = '')
+    {
         return JWT::get($jwt, $name);
     }
 }
 if (!function_exists('jwt_data')) {
     /**
      * 获取JWT中所有用户设置的数据
-     * 
+     *
      * @param string $jwt JWT
      */
-    function jwt_data($jwt = '') {
+    function jwt_data($jwt = '')
+    {
         return JWT::data($jwt);
     }
 }
 if (!function_exists('jwt_check')) {
     /**
      * 检测JWT
-     * 
+     *
      * @param string $jwt JWT
      */
-    function jwt_check($jwt = '') {
+    function jwt_check($jwt = '')
+    {
         $status = JWT::check($jwt);
         if ($status == 200) {
             return true;
@@ -342,39 +350,39 @@ if (!function_exists('jwt_check')) {
             case 100:
                 return 'JWT不能为为空';
                 break;
-            
+
             case 101:
                 return 'JWT不完整';
                 break;
-            
+
             case 102:
                 return 'JWT签名不正确';
                 break;
-            
+
             case 103:
                 return 'JWT Payload解析错误';
                 break;
-            
+
             case 104:
                 return '没有获得启用时间';
                 break;
-            
+
             case 105:
                 return '当前 JWT 还未启用';
                 break;
-            
+
             case 106:
                 return '没有获取到过期时间';
                 break;
-            
+
             case 107:
                 return 'JWT 过期';
                 break;
-            
+
             case 108:
                 return '当前 JWT 中没有数据字段';
                 break;
-            
+
             default:
                 # code...
                 break;
@@ -382,7 +390,7 @@ if (!function_exists('jwt_check')) {
     }
 }
 
-/* 
+/*
 // TEST
 
 // 创建JWT
@@ -402,8 +410,8 @@ var_dump($data);
 
 // 设置数据
 $newData = [
-    'id' => 2,
-    'username' => 'jwt'
+'id' => 2,
+'username' => 'jwt'
 ];
 $jwt = jwt_set($jwt, $newData);
 echo "</pre><br/><br/>修改ID添加USERNAME:<pre>";
@@ -413,7 +421,6 @@ var_dump($jwt);
 $check = jwt_check($jwt);
 echo "</pre><br/><br/>检测JWT:<pre>";
 var_dump($check);
-
 
 // 获取数据
 $data = jwt_data($jwt);
