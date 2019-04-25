@@ -1,0 +1,11 @@
+{
+    "name": "yuunie/JWT",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Junjie Yu",
+            "email": "1591216902@qq.com"
+        }
+    ],
+    "require": {}
+}
