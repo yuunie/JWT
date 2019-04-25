@@ -74,6 +74,7 @@ class JWT
      */
     public static function check($jwt = '', $key = '')
     {
+        self::init();
         if ($key != '') {
             self::setKey($key);
         }
@@ -138,6 +139,7 @@ class JWT
      */
     public static function get($jwt = '', $name = '', $check = true, $key = '')
     {
+        self::init();
         if ($jwt == '') {
             return false;
         }
@@ -185,6 +187,7 @@ class JWT
      */
     public static function data($jwt = '', $check = true, $key = '')
     {
+        self::init();
         if ($jwt == '') {
             return false;
         }
@@ -213,6 +216,7 @@ class JWT
      */
     public static function setKey($key = '')
     {
+        self::init();
         if ($key != '') {
             self::$key = $key;
             return true;
