@@ -7,5 +7,10 @@
             "email": "1591216902@qq.com"
         }
     ],
+    "autoload":{
+    	"psr-4": {
+            "Yuunie\\": ""
+        }
+    },
     "require": {}
 }
