@@ -171,7 +171,6 @@ class JWT
      */
     public static function set($jwt = '', $data = [])
     {
-        var_dump($data);
         $jwtData = self::data($jwt);
         $newData = @array_merge($jwtData, $data);
         return self::start($newData);
