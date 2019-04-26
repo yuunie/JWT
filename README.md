@@ -14,7 +14,7 @@ composer require yuunie/jwt
 
 ## 环境
 
-* PHP 7+
+* PHP 7+ 也可以尝试在PHP5.5+使用
 
 ## 教程
 
