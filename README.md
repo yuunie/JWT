@@ -135,6 +135,8 @@ switch ($info) {
 ### Helper
 
 ```
+
+
 if (!function_exists('jwt_start')) {
     /**
      * 创建一个JWT并添加用户数据
