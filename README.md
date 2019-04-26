@@ -30,7 +30,7 @@ include_once 'verdor/autoload.php';
 
 ### 静态方法使用
 
-* 设置KEY
+#### 设置KEY
 
 ```
 Yuunie\JWT::setKey('这里填写一个256个字符的串');
@@ -58,7 +58,7 @@ $newJwt = Yuunie\JWT::set($jwt, ['username' => 'hello', 'sex' => 'none']);
 
   * $newJwt将得到修改和增加数据后的JWT字符串
 
-* 获得JWT中的所有用户添加的数据
+#### 获得JWT中的所有用户添加的数据
 
 ```
 $data = Yuunie\JWT::getData($jwt);
@@ -67,7 +67,7 @@ $data = Yuunie\JWT::getData($jwt);
   * 正常返回一个数组
   * 否则返回false
 
-* 获得JWT中的用户添加的指定数据
+#### 获得JWT中的用户添加的指定数据
 
 ```
 $id = Yuunie\JWT::get($jwt, 'id');
@@ -76,7 +76,7 @@ $id = Yuunie\JWT::get($jwt, 'id');
   * 正常返回该数据
   * 否则返回false
 
-* 检测JWT是否正确
+#### 检测JWT是否正确
 
 ```
 $info = Yuunie\JWT::check($jwt);
@@ -87,7 +87,7 @@ $info = Yuunie\JWT::check($jwt);
   * 如果需要准确的错误信息请使用
   * 返回值为整数 200 => 一切正常
 
-* 错误值
+#### 错误值
 
 ```
 switch ($info) {
