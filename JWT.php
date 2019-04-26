@@ -280,7 +280,7 @@ class JWT
         $data = $headerBase . '.' . $payloadBase;
         // 添加混淆
         $data = $data . $key;
-        // 通过S256生成签名
+        // 通过HS256生成签名
         $signatureBin = hash('sha256', $data, true);
         $signature = bin2hex($signatureBin);
         return $signature;
