@@ -26,6 +26,7 @@ class JWT
         // 过期时间
         $expTime = 300;
         // 加密 KEY
+        // HS256 256位字符串 保障JWT签名安全
         $key = 'JHKAGHKJAHFDSF3SA4B4A45G4ASD4B54A53G46E4G3A5453C4B53AC3B5';
 
         self::$payloadISS = 'JWT';
@@ -231,7 +232,7 @@ class JWT
     // JWT 头
     protected static function header()
     {
-        $algorithm = "RS256";
+        $algorithm = "HS256";
         $type = "JWT";
         $headerArray = [
             "alg" => $algorithm,
