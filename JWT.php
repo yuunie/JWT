@@ -217,7 +217,7 @@ class JWT
      * 设置JWT 默认 加密秘钥
      *
      * @name setKey
-     * @param string $key 加密秘钥(尽量复杂,用于包含JWT,请勿泄露)
+     * @param string $key 加密秘钥(尽量复杂,用于保护JWT,请勿泄露)
      * @return bool
      */
     public static function setKey($key = '')
