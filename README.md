@@ -135,7 +135,7 @@ switch ($info) {
 ### Helper
 
 ```
-
+use Yuunie;
 
 if (!function_exists('jwt_start')) {
     /**
