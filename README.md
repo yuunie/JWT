@@ -1,6 +1,6 @@
 # JWT
 
-一个简单的JWT验证，使用方式还有像Session
+一个简单的JWT验证，使用方式还有点像Session
 
 ## 开始
 
