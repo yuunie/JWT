@@ -35,7 +35,7 @@ include_once 'verdor/autoload.php';
 #### 设置KEY
 
 ```
-Yuunie\JWT::setKey('这里填写一个256个字符的串');
+Yuunie\JWT::setKey('keykeykeykeykeykeyHJBhlpa5d6s5f6');
 ```
   
   * KEY是为了保护JWT签名所用
@@ -137,7 +137,7 @@ switch ($info) {
 ### Helper
 
 ```
-use Yuunie;
+use Yuunie\JWT;
 
 if (!function_exists('jwt_start')) {
     /**
